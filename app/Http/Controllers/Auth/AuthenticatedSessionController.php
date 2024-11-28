@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             Auth::login($user);
 
-            // Redirect berdasarkan role
+            // Redirect based on role
             if ($user->role == 'dosen') {
                 return redirect()->route('dosen.index');
             } elseif ($user->role == 'mahasiswa') {
@@ -44,6 +44,7 @@ class AuthenticatedSessionController extends Controller
             }
         }
 
+        // Handle failed login
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);

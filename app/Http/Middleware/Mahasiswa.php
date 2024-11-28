@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class Mahasiswa
@@ -13,11 +14,18 @@ class Mahasiswa
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if (Auth()->user()->role=='mahasiswa') {
+        // Cek apakah pengguna terautentikasi
+        if (!Auth::check()) {
+            return redirect()->route('login'); // Ganti dengan rute login Anda
+        }
+
+        // Cek apakah pengguna memiliki role 'mahasiswa'
+        if (Auth::user()->role == 'mahasiswa') {
             return $next($request);
         }
-        abort(401);
+
+        abort(403); // Forbidden
     }
 }

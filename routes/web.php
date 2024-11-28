@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LokerController;
 use Illuminate\Support\Facades\Route;
@@ -49,7 +50,13 @@ Route::middleware('auth','dosen')->group(function(){
 });
 
 Route::middleware('auth','mahasiswa')->group(function(){
-    Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswa.index');
+    Route::get('/mahasiswa', [MahasiswaController::class, 'index'])->name('mahasiswa.index');
+    Route::get('/mahasiswa/institusi', [MahasiswaController::class, 'institusi'])->name('mahasiswa.institusi');
+    Route::get('/mahasiswa/alumni', [MahasiswaController::class, 'alumni'])->name('mahasiswa.alumni');
+    Route::get('/mahasiswa/loker', [MahasiswaController::class, 'loker'])->name('mahasiswa.loker');
+    Route::get('/mahasiswa/alumni/{id}', [MahasiswaController::class, 'showAlumni'])->name('mahasiswa.alumni.show');
+    Route::get('/mahasiswa/institusi/{id}', [MahasiswaController::class, 'showInstitusi'])->name('mahasiswa.institusi.show');
+    Route::get('/mahasiswa/loker/{id}', [MahasiswaController::class, 'showLoker'])->name('mahasiswa.loker.show');
 });
 
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');

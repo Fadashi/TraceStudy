@@ -23,6 +23,24 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <li class="sidebar-item {{ request()->routeIs('mahasiswa.alumni') ? 'active' : '' }}">
+                        <a href="{{ route('mahasiswa.alumni') }}" class='sidebar-link'>
+                            <i class="bi bi-person-fill"></i>
+                            <span>Alumni</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('mahasiswa.institusi') ? 'active' : '' }}">
+                        <a href="{{ route('mahasiswa.institusi') }}" class='sidebar-link'>
+                            <i class="bi bi-building"></i>
+                            <span>Institusi</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item {{ request()->routeIs('mahasiswa.loker') ? 'active' : '' }}">
+                        <a href="{{ route('mahasiswa.loker') }}" class='sidebar-link'>
+                            <i class="bi bi-briefcase-fill"></i>
+                            <span>Lowongan Kerja</span>
+                        </a>
+                    </li>
                 @elseif (Auth()->user()->role == 'dosen')
                     <li class="sidebar-item {{ request()->routeIs('dosen.index') ? 'active' : '' }}">
                         <a href="{{ route('dosen.index') }}" class='sidebar-link'>

@@ -38,9 +38,9 @@ class RegisteredUserController extends Controller
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $photo =$request->file('photo');
+        $photo = $request->file('photo');
         $namafile = $request->email . $photo->getClientOriginalName();
-        $path = 'photo/'.$namafile;
+        $path = 'photo/' . $namafile;
         Storage::disk('public')->put($path, file_get_contents($photo));
 
         $user = User::create([
@@ -53,9 +53,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
 
     public function createDosen()
@@ -89,12 +87,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        // Notifikasi
-        session()->flash('success', 'Data berhasil disimpan. Silakan login.');
-
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
 
     public function createMahasiswa()
@@ -128,11 +121,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        // Notifikasi
-        session()->flash('success', 'Data berhasil disimpan. Silakan login.');
-
-        return redirect()->route('login');
+        return redirect()->route('login')->with('success', 'Registration successful. Please log in.');
     }
 }
