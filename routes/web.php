@@ -71,5 +71,10 @@ Route::get('/register/mahasiswa', [RegisteredUserController::class, 'createMahas
 Route::post('/register/mahasiswa', [RegisteredUserController::class, 'storeMahasiswa'])->name('register.mahasiswa.store');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login/dosen', [LoginController::class, 'showDosenLoginForm'])->name('login.dosen');
+Route::post('/login/dosen', [LoginController::class, 'dosenLogin']);
+
+Route::get('/login/mahasiswa', [LoginController::class, 'showMahasiswaLoginForm'])->name('login.mahasiswa');
+Route::post('/login/mahasiswa', [LoginController::class, 'mahasiswaLogin']);
 
 require __DIR__.'/auth.php';

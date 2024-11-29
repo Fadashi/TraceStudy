@@ -149,7 +149,7 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ asset('storage/' . Auth()->user()->photo) }}" alt="User Photo">
+                            <img src="{{ asset('storage/app/public/' . Auth()->user()->photo) }}" alt="User Photo" style="width: 100%; object-fit: cover;">
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">{{ Auth()->user()->name }}</h5>

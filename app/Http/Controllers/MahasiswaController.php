@@ -15,6 +15,7 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
+        $user = $request->user(); // Get the authenticated user
         $query = Alumni::query();
     
         if ($request->has('search')) {

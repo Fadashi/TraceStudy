@@ -17,22 +17,37 @@
     </head>
     <body>
         <div class="container d-flex justify-content-center align-items-center vh-100">
-            <div class="card shadow-lg p-4 text-center" style="border-radius: 15px;">
+            <div class="card shadow-lg p-4 text-center" style="border-radius: 15px; width: 100%;">
                 <img src="{{ asset('dist/assets/images/logo/TraceStudy.png') }}" alt="TraceStudy Logo" class="logo mb-4" style="max-width: 200px; display: block; margin: 0 auto;">
                 <h1 class="display-4 font-weight-bold">Welcome to TraceStudy</h1>
                 <p class="lead">Please choose an option to continue.</p>
-                <div class="mt-4">
-                    <a href="{{ route('login') }}" class="btn btn-primary btn-lg mx-2">
-                        Login
-                    </a>
-                </div>
-                <div class="mt-3 d-flex justify-content-center">
-                    <a href="{{ route('register.dosen') }}" class="btn btn-secondary btn-sm mx-2">
-                        Register as Dosen
-                    </a>
-                    <a href="{{ route('register.mahasiswa') }}" class="btn btn-secondary btn-sm mx-2">
-                        Register as Mahasiswa
-                    </a>
+                <div class="row w-100">
+                    <div class="col-md-6">
+                        <div class="card shadow-lg p-4 text-center" style="border-radius: 15px;">
+                            <h1 class="display-4 font-weight-bold">Dosen</h1>
+                            <div class="mt-4">
+                                <a href="{{ route('login.dosen') }}" class="btn btn-primary btn-lg mx-2">
+                                    Login as Dosen
+                                </a>
+                                <a href="{{ route('register.dosen') }}" class="btn btn-secondary btn-lg mx-2">
+                                    Register as Dosen
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card shadow-lg p-4 text-center" style="border-radius: 15px;">
+                            <h1 class="display-4 font-weight-bold">Mahasiswa</h1>
+                            <div class="mt-4">
+                                <a href="{{ route('login.mahasiswa') }}" class="btn btn-primary btn-lg mx-2">
+                                    Login Mahasiswa
+                                </a>
+                                <a href="{{ route('register.mahasiswa') }}" class="btn btn-secondary btn-lg mx-2">
+                                    Register as Mahasiswa
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
