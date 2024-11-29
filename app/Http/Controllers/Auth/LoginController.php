@@ -8,18 +8,20 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function showDosenLoginForm()
     {
         return view('auth.login_dosen');
     }
 
     public function dosenLogin(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('dosen/dashboard');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 'dosen'])) {
+            return redirect()->route('dosen.index')->with('success', 'Login successful');
         }
 
         return back()->withErrors([
@@ -34,15 +36,17 @@ class LoginController extends Controller
 
     public function mahasiswaLogin(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed...
-            return redirect()->intended('mahasiswa/dashboard');
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'role' => 'mahasiswa'])) {
+            return redirect()->route('mahasiswa.index')->with('success', 'Login successful');
         }
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
-}
+} 
